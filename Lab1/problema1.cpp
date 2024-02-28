@@ -21,5 +21,6 @@ int main(){
 		ans+=atoi2(str);
 	}
 	printf("%d",ans);
+	fclose(pfile);
 	return 0;
 }
