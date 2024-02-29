@@ -5,7 +5,7 @@ bool isPrime(int n)
 {
 	if(n==1 || n==0)
 		return false; 
-    for (int tr = 2; tr <= n / 2; tr++)// sau tr*tr<=n pt complexitate O(sqrt(n))
+    for (int tr = 2; tr <= n / tr; tr++)
         if ((n % tr ) == 0)
             return false;
     return true;
