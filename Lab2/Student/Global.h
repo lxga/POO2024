@@ -1,3 +1,4 @@
+#include "Student.h"
 int comparemathGrade(Student& a,Student& b);
 int compareenglishGrade(Student& a,Student& b);
 int comparehistoryGrade(Student& a,Student& b);

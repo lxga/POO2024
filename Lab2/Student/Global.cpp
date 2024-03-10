@@ -1,3 +1,6 @@
+#pragma once
+#include "Global.h"
+#include <cstring>
 int comparemathGrade(Student& a,Student& b){
     float f1=a.getmathGrade(),f2=b.getmathGrade();
     if(f1<f2)
@@ -26,7 +29,7 @@ int comparehistoryGrade(Student& a,Student& b){
         return 0;
 }
 int compareName(Student& a,Student& b){
-    char* s1=a.getName(),s2=b.getName();
+    char* s1=a.getName(),*s2=b.getName();
     int len1=strlen(s1),len2=strlen(s2);
     if(len1<len2)
         return -1;

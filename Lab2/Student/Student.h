@@ -1,4 +1,6 @@
-class Student{
+#define _CRT_SECURE_NO_WARNINGS
+#pragma once
+class Student {
     char name[51];
     float mathGrade;
     float historyGrade;
@@ -9,7 +11,7 @@ public:
 
     bool setmathGrade(float val);
     float getmathGrade();
-    
+
     bool sethistoryGrade(float val);
     float gethistoryGrade();
 
@@ -17,4 +19,4 @@ public:
     float getenglishGrade();
 
     float getaverageGrade();
-}
+};
