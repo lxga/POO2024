@@ -82,5 +82,11 @@ char* Math::Add(const char* a, const char* b) {
     }
     if (t != 0)
         ans[0] = '1';
+    if (ans[0] == '\7') {
+        while (ans[k]) {
+            ans[k] = ans[k + 1];
+            k++;
+        }
+    }
     return ans;
 }
