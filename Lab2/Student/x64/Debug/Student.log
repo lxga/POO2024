@@ -1,0 +1,10 @@
+﻿  Global.cpp
+  main.cpp
+C:\Users\Luca\source\repos\POO2024\Lab2\Student\Global.cpp(33,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Luca\source\repos\POO2024\Lab2\Student\Global.cpp(33,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Student.cpp
+  Generating Code...
+C:\Users\Luca\source\repos\POO2024\Lab2\Student\Student.cpp(18): warning C4715: 'Student::setmathGrade': not all control paths return a value
+C:\Users\Luca\source\repos\POO2024\Lab2\Student\Student.cpp(27): warning C4715: 'Student::setenglishGrade': not all control paths return a value
+C:\Users\Luca\source\repos\POO2024\Lab2\Student\Student.cpp(36): warning C4715: 'Student::sethistoryGrade': not all control paths return a value
+  Student.vcxproj -> C:\Users\Luca\source\repos\POO2024\Lab2\Student\x64\Debug\Student.exe
