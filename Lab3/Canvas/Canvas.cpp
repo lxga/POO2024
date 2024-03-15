@@ -30,7 +30,7 @@ void Canvas::DrawCircle(int x, int y, int ray, char ch) {
 		for (int j = 0; j < width; j++) {
 			int dist = (i - x)* (i - x) + (j - y) * (j - y);
 			if (dist >= ray * (ray - 1) && dist <= ray * (ray + 1))
-				SetPoint(x, y, ch);
+				SetPoint(i, j, ch);
 		}
 	}
 }
@@ -39,7 +39,7 @@ void Canvas::FillCircle(int x, int y, int ray, char ch) {
 		for (int j = 0; j < width; j++) {
 			int dist = (i - x) * (i - x) + (j - y) * (j - y);
 			if (dist <= ray * ray)
-				SetPoint(x, y, ch);
+				SetPoint(i, j, ch);
 		}
 	}
 }
@@ -50,7 +50,7 @@ void Canvas::DrawRect(int left, int top, int right, int bottom, char ch) {
 	}
 	for (int i = top; i <= bottom; i++) {
 		SetPoint(i, left, ch);
-		SetPoint(bottom, right, ch);
+		SetPoint(i, right, ch);
 	}
 
 }
