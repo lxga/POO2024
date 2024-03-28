@@ -49,12 +49,40 @@ Number& Number::operator=(Number&& a) {
 	return *this;
 }
 
-Number& operator+(const Number& a, const Number& b) {
+Number operator+(const Number& a, const Number& b) {
 	Number res = a;
-	if (res.base > b.base) {
-		b.SwitchBase(res.base);
-	}
-	else
-		res.SwitchBase(b.base);
+	
+	return res;
+}
 
+
+
+void Number::Print(){
+	std::cout<<this->nr;
+}
+
+int Number::GetDigitsCount(){
+	int len=0;
+	while(this->nr[len])
+		len++;
+	return len+1;
+}
+
+int Number::GetBase(){
+	return this->base;
+}
+
+void Number::SwitchBase(int newBase){
+	int len=GetDigitsCount();
+	char *temp=new char[4*len];
+
+	//Reverse
+	for(int i=0;i<len/2;i++){
+		std::swap(this->nr[i],this->nr[len-i-1]);
+	}
+
+	int pos=0;
+	for(int i=0;i<len;i++){
+		
+	}
 }
