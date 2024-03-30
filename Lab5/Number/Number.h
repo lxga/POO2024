@@ -7,6 +7,7 @@ class Number
 	int base;
 public:
 	Number(int nr);
+	Number(int len, int base);
 	Number(const char* value, int base); // where base is between 2 and 16
 	Number(const Number& a);//copy constructor
 	Number(Number&& a);//move constructor
@@ -21,8 +22,8 @@ public:
 	friend Number operator*(const Number& a, int b);
 	
 	
-	Number operator/(const Number& b);
-	Number operator%(const Number& b);
+	Number operator/(int b);
+	int operator%(int b);
 
 
 	bool operator<(const Number& b);

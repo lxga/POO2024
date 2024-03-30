@@ -18,6 +18,10 @@ Number::Number(int nr) {
 		len--;
 	}
 }
+Number::Number(int len, int base) {
+	this->nr = new char[len + 1];
+	this->base = base;
+}
 //constructor
 Number::Number(const char* value, int base) {
 	if (base < 2 || base>16) return;
@@ -93,6 +97,11 @@ Number::~Number() {
 
 
 //OPERATORI ARITMETICI--------------------------------------------
+
+/// <summary>
+/// Numar catre char
+/// </summary>
+/// <param name="c"></param>
 void fixChar(char& c) {
 	if (c <= 9)
 		c += '0';
@@ -100,6 +109,11 @@ void fixChar(char& c) {
 		c = c - 10 + 'A';
 }
 
+/// <summary>
+/// Char catre numar
+/// </summary>
+/// <param name="c"></param>
+/// <returns></returns>
 char toInt(char c) {
 	if (c >= 'A')
 		return c + 10 - 'A';
@@ -229,6 +243,7 @@ Number operator-(const Number& a, const Number& b) {
 	return na;
 }
 
+/*
 Number Number::operator/(const Number& b) {
 	Number na = *this, nb = b;
 	
@@ -245,12 +260,7 @@ Number Number::operator/(const Number& b) {
 }
 Number Number::operator%(const Number& b) {
 	Number na = *this, nb = b;
-	/*if (na.GetBase() > nb.GetBase()) {
-		nb.SwitchBase(na.GetBase());
-	}
-	else if (na.GetBase() < nb.GetBase()) {
-		na.SwitchBase(nb.GetBase());
-	}*/
+
 	if (na.base != nb.base)
 		return Number(0, -1);
 
@@ -261,7 +271,40 @@ Number Number::operator%(const Number& b) {
 	}
 	return na;
 }
+*/
+Number Number::operator/(int b) {
+	char* temp = new char[this->GetDigitsCount() + 1];
+	int rest = 0;
+	int i;
+	for (i = 0; this->nr[i]; i++) {
+		rest = rest * this->base + toInt(this->nr[i]);
+		char c = rest / b;
+		fixChar(c);
+		temp[i] = c;
+		rest %= b;
+	}
+	temp[i] = '\0';
+	int j = 0;
+	while (temp[j] == '0' && temp[j] != '\0') {
+		j++;
+	}
+	for ( i = j; temp[i]; i++) {
+		temp[i-j] = temp[i];
+	}
+	temp[i-j] = '\0';
 
+	Number ans(temp, this->base);
+	delete[] temp;
+	return ans;
+}
+int Number::operator%(int b) {
+	int rest = 0;
+	for (int i = 0; this->nr[i]; i++) {
+		rest = rest * this->base + toInt(this->nr[i]);
+		rest %= b;
+	}
+	return rest;
+}
 
 Number operator*(const Number& a, int b) {
 	Number na(a), ans("0", na.base);
@@ -377,27 +420,27 @@ void Number::SwitchBase(int newBase){
 		pow = pow * base;
 	}
 
-	Number zero("0", 10), nBase(newBase);
-	int k = 0;
+	Number zero("0", 10), temp2(10001, newBase);//hardcodat momentan
+	int k = 0, rest;
+
 	while (temp>zero) {
-		Number cat = temp / nBase;
-		Number rest = temp % nBase;
-		rest.base = newBase;
-		if (rest.nr[1] > 0) {
-			rest.nr[0] = ((rest.nr[0] - '0') * 10 + rest.nr[1] - '0');
-			rest.nr[0] -= 10 - 'A';
-			rest.nr[1] = 0;
-		}
+		Number cat = temp / newBase;
+		rest = temp % newBase;
+		fixChar((char&)rest);
 
-		
-		for (int i = 0; i < k; i++) {
-			rest = rest * newBase;
+		if (rest != '0') {
+			temp2.nr[0] = rest;
+			for (int i = 1; i <= k; i++) {
+				temp2.nr[i] = '0';
+			}
+			temp2.nr[k + 1] = 0;
 		}
+		else
+			temp2.nr[0] = 0;
 
-		ans = ans + rest;
+		ans = ans + temp2;
 		temp = cat;
 		k++;
 	}
-
 	*this = ans;
 }
