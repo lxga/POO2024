@@ -1,6 +1,6 @@
 #include "Number.h"
 
-
+//constructor cu int ( baza 10)
 Number::Number(int nr) {
 	int aux = nr, len = 0;
 	do {
@@ -18,6 +18,7 @@ Number::Number(int nr) {
 		len--;
 	}
 }
+//constructor
 Number::Number(const char* value, int base) {
 	if (base < 2 || base>16) return;
 	int len = 0;
@@ -31,11 +32,7 @@ Number::Number(const char* value, int base) {
 	}
 }
 
-Number::~Number() {
-	delete[] this->nr;
-	this->nr = nullptr;
-}
-
+//copy constructor
 Number::Number(const Number& a) {
 	int len = a.GetDigitsCount();
 	this->nr = new char[len + 1];
@@ -46,6 +43,8 @@ Number::Number(const Number& a) {
 	}
 	this->base = a.base;
 }
+
+//move constructor
 Number::Number(Number&& a) {
 	delete[] this->nr;
 	char* temp = a.nr;
@@ -54,6 +53,7 @@ Number::Number(Number&& a) {
 	this->base = a.base;
 }
 
+//move assigment
 Number& Number::operator=(Number&& a) {
 	delete[] this->nr;
 	this->nr = a.nr;
@@ -61,6 +61,7 @@ Number& Number::operator=(Number&& a) {
 	this->base = a.base;
 	return *this;
 }
+//copy assigment
 Number& Number::operator=(Number& a) {
 	int len = a.GetDigitsCount();
 	this->nr = new char[len + 1];
@@ -71,6 +72,7 @@ Number& Number::operator=(Number& a) {
 	this->base = a.base;
 	return *this;
 }
+// = string
 Number& Number::operator=(const char* a) {
 	delete[] this->nr;
 	int len;
@@ -83,8 +85,14 @@ Number& Number::operator=(const char* a) {
 	return *this;
 }
 
+//Destructor
+Number::~Number() {
+	delete[] this->nr;
+	this->nr = nullptr;
+}
 
-//OPERATORI ARITMETICI
+
+//OPERATORI ARITMETICI--------------------------------------------
 void fixChar(char& c) {
 	if (c <= 9)
 		c += '0';
@@ -286,7 +294,7 @@ Number operator*(const Number& a, int b) {
 }
 
 
-//OPERATORI RELATIONALI
+//OPERATORI RELATIONALI--------------------------------------------
 bool Number::operator==(const Number& b) {
 	Number nb = b;
 	if (nb.base != this->base)
@@ -342,7 +350,7 @@ bool Number::operator<=(const Number& b) {
 }
 
 
-//MISC
+//MISC--------------------------------------------
 char& Number::operator[](int index) {
 	return this->nr[index];
 }
