@@ -31,6 +31,5 @@ int main()
     n4.Print();
     n4--; // the last digit from n4 will be remove ==> n4 becomes 357
     n4.Print();
-
     return 0;
 }
