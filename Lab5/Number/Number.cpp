@@ -122,16 +122,7 @@ Number operator+(const Number& a, const Number& b) {
 	temp[pos+1] = 0;
 	temp[0] = 0;
 	while (len1 >= 0 && len2 >= 0) {
-		int sumtemp= na.nr[len1] + nb.nr[len2] + tr;
-		
-		if (na.nr[len1] >= 'A')
-			sumtemp -= 'A' - 10;
-		else
-			sumtemp -= '0';
-		if (nb.nr[len2] >= 'A')
-			sumtemp -= 'A' - 10;
-		else
-			sumtemp -= '0';
+		int sumtemp= toInt(na.nr[len1]) + toInt(nb.nr[len2]) + tr;
 
 		tr = sumtemp / base;
 		
@@ -144,11 +135,7 @@ Number operator+(const Number& a, const Number& b) {
 		len2--;
 	}
 	while (len1 >= 0) {
-		temp[pos] = na.nr[len1] + tr;
-		if (na.nr[len1] >= 'A')
-			temp[pos] -= 'A' - 10;
-		else
-			temp[pos] -= '0';
+		temp[pos] = toInt(na.nr[len1]) + tr;
 		tr = temp[pos] / base;
 		temp[pos] %= base;
 		fixChar(temp[pos]);
@@ -156,11 +143,7 @@ Number operator+(const Number& a, const Number& b) {
 		len1--;
 	}
 	while (len2 >= 0) {
-		temp[pos] = nb.nr[len2] + tr;
-		if (nb.nr[len2] >= 'A')
-			temp[pos] -= 'A' - 10;
-		else
-			temp[pos] -= '0';
+		temp[pos] = toInt(nb.nr[len2]) + tr;
 		tr = temp[pos] / base;
 		temp[pos] %= base;
 		fixChar(temp[pos]);
