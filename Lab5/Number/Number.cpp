@@ -98,22 +98,14 @@ Number::~Number() {
 
 //OPERATORI ARITMETICI--------------------------------------------
 
-/// <summary>
-/// Numar catre char
-/// </summary>
-/// <param name="c"></param>
-void fixChar(char& c) {
+void toChar(char& c) {
 	if (c <= 9)
 		c += '0';
 	else
 		c = c - 10 + 'A';
 }
 
-/// <summary>
-/// Char catre numar
-/// </summary>
-/// <param name="c"></param>
-/// <returns></returns>
+
 char toInt(char c) {
 	if (c >= 'A')
 		return c + 10 - 'A';
@@ -141,7 +133,7 @@ Number operator+(const Number& a, const Number& b) {
 		tr = sumtemp / base;
 		
 		temp[pos] = sumtemp % base;
-		fixChar(temp[pos]);
+		toChar(temp[pos]);
 
 
 		pos--;
@@ -152,7 +144,7 @@ Number operator+(const Number& a, const Number& b) {
 		temp[pos] = toInt(na.nr[len1]) + tr;
 		tr = temp[pos] / base;
 		temp[pos] %= base;
-		fixChar(temp[pos]);
+		toChar(temp[pos]);
 		pos--;
 		len1--;
 	}
@@ -160,14 +152,14 @@ Number operator+(const Number& a, const Number& b) {
 		temp[pos] = toInt(nb.nr[len2]) + tr;
 		tr = temp[pos] / base;
 		temp[pos] %= base;
-		fixChar(temp[pos]);
+		toChar(temp[pos]);
 		pos--;
 		len2--;
 		tr = 0;
 	}
 	if (tr != 0) {
 		temp[0] = tr;
-		fixChar(temp[0]);
+		toChar(temp[0]);
 	}
 	else {
 		for (int i = 0; temp[i-1]; i++) {
@@ -202,7 +194,7 @@ Number operator-(const Number& a, const Number& b) {
 		if (temp[pos] < 0)
 			temp[pos] += base, tr = -1;
 		else tr = 0;
-		fixChar(temp[pos]);
+		toChar(temp[pos]);
 		pos--;
 		len1--;
 		len2--;
@@ -213,7 +205,7 @@ Number operator-(const Number& a, const Number& b) {
 			temp[pos] += base, tr = -1;
 		else
 			tr = 0;
-		fixChar(temp[pos]);
+		toChar(temp[pos]);
 		pos--;
 		len1--;
 	}
@@ -223,7 +215,7 @@ Number operator-(const Number& a, const Number& b) {
 			temp[pos] += base, tr = -1;
 		else
 			tr = 0;
-		fixChar(temp[pos]);
+		toChar(temp[pos]);
 		pos--;
 		len2--;
 		tr = 0;
@@ -279,7 +271,7 @@ Number Number::operator/(int b) {
 	for (i = 0; this->nr[i]; i++) {
 		rest = rest * this->base + toInt(this->nr[i]);
 		char c = rest / b;
-		fixChar(c);
+		toChar(c);
 		temp[i] = c;
 		rest %= b;
 	}
@@ -426,7 +418,7 @@ void Number::SwitchBase(int newBase){
 	while (temp>zero) {
 		Number cat = temp / newBase;
 		rest = temp % newBase;
-		fixChar((char&)rest);
+		toChar((char&)rest);
 
 		if (rest != '0') {
 			temp2.nr[0] = rest;

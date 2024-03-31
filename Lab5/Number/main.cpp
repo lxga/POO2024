@@ -3,7 +3,7 @@
 
 int main()
 {
-    /*Number n1("10110010", 2);
+    Number n1("10110010", 2);
     Number n2("734", 8);
     Number n3("FF", 16);
 
@@ -30,9 +30,6 @@ int main()
     --n4; // the first digit from n4 will be remove ==> n4 becomes 3579
     n4.Print();
     n4--; // the last digit from n4 will be remove ==> n4 becomes 357
-    n4.Print();*/
-    Number n1("FFFFFFFFFFFFFFFFFFFFFFFFFFF",16);
-    n1.SwitchBase(10);
-    n1.Print();
+    n4.Print();
     return 0;
 }
