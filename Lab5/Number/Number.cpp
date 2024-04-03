@@ -412,7 +412,7 @@ void Number::SwitchBase(int newBase){
 		pow = pow * base;
 	}
 
-	Number zero("0", 10), temp2(10001, newBase);//hardcodat momentan
+	Number zero("0", 10), temp2(temp.GetDigitsCount() * 5, newBase);
 	int k = 0, rest;
 
 	while (temp>zero) {
