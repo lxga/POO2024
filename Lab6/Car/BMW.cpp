@@ -6,9 +6,14 @@ BMW::BMW() {
 	avgSpeed[Sunny] = 100;
 	avgSpeed[Rain] = 50;
 	avgSpeed[Snow] = 30;
+	name = "BMW";
 }
-float BMW::timeToFinish(float dist, Weather type) {
+void BMW::timeToFinish(float dist, Weather type) {
 	if (fuelCapacity / fuelCons * 100 < dist)
-		return -1;
-	return dist / avgSpeed[type];
+		time = 2e18;
+	else
+		time = dist / avgSpeed[type];
+}
+const char* BMW::getName() {
+	return this->name;
 }

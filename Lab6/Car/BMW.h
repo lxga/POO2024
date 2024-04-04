@@ -2,6 +2,6 @@
 class BMW : public Car {
 public:
 	BMW();
-	~BMW();
-	float timeToFinish(float dist,Weather type);
+	void timeToFinish(float dist, Weather type) override;
+	const char* getName() override;
 };

@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="BMW.cpp" />
     <ClCompile Include="BMW.h" />
+    <ClCompile Include="Circuit.cpp" />
     <ClCompile Include="Fiat.cpp" />
     <ClCompile Include="Fiat.h" />
     <ClCompile Include="main.cpp" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
+    <ClInclude Include="Circuit.h" />
     <ClInclude Include="RangeRover.h" />
     <ClInclude Include="Volvo.h" />
     <ClInclude Include="Weather.h" />
