@@ -18,4 +18,10 @@ class Map {
 	bool Includes(const Map<K, V>& map) {
 
 	}
+	K* begin() {
+
+	}
+	K* end() {
+
+	}
 };
