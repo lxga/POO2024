@@ -1,21 +1,31 @@
 #include <iostream>
+
 template<typename K, typename V>
 class Map {
-	struct Node {
+	struct info {
 		K key;
 		V value;
 		int index;
+	};
+	struct Node {
+		info inff;
 		Node* next;
 		Node() :next(nullptr) {}
 		~Node() {
+			if (next != nullptr)
+				delete next;
 		}
-		Node* operator++() {
-			return this->next;
-		}
-		bool operator != (Node* m) { return this->key != m->key; }
-		auto operator* () { return { key,value,index }; }
 	};
-	Node* root, * endp;
+	class Iterator {
+		Node* node;
+	public:
+		Iterator(Node* node) : node(node) {}
+		bool operator!= (const Iterator& other) const { return node != other.node; }
+		void operator++ () { node = node->next; }
+		info operator* () const { return node->inff; }
+	};
+	
+	Node *root, *endp;
 	int size;
 public:
 	Map() {
@@ -25,45 +35,29 @@ public:
 	V& operator[](const K& x) {
 		Node* i = root, * prev = nullptr;
 		while (i) {
-			if (i->key == x)
-				return i->value;
+			if (i->inff.key == x)
+				return i->inff.value;
 			prev = i;
 			i = i->next;
 		}
 		i = new Node;
-		i->key = x;
+		i->inff.key = x;
 		endp = i;
-		i->index = ++size;
+		i->inff.index = ++size;
 		if (root == nullptr)
 			root = i;
 		else
 			prev->next = i;
-		return i->value;
+		return i->inff.value;
 	}
 	void Set(const K& key, V& value) {
-		Node* i = root, * prev = nullptr;
-		while (i) {
-			if (i->key == key) {
-				i->value = value; return;
-			}
-			prev = i;
-			i = i->next;
-		}
-		i = new Node;
-		i->key = key;
-		endp = i;
-		i->index = ++size;
-		if (root == nullptr)
-			root = i;
-		else
-			prev->next = i;
-		i->value = value;
+		(*this)[key] = value;
 	}
 	bool Get(const K& key, V& value) {
 		Node* i = root;
 		while (i) {
-			if (i->key == key) {
-				value = i->value;
+			if (i->inff.key == key) {
+				value = i->inff.value;
 				return 1;
 			}
 			i = i->next;
@@ -80,7 +74,7 @@ public:
 	bool Delete(const K& key) {
 		Node* i = root, * prev = nullptr;
 		while (i) {
-			if (i->key == key) {
+			if (i->inff.key == key) {
 				if (prev != nullptr)
 					prev->next = i->next;
 				else
@@ -102,10 +96,6 @@ public:
 		}
 		return 1;
 	}
-	Node* begin() {
-		return root;
-	}
-	Node* end() {
-		return nullptr;
-	}
+	Iterator begin() { return Iterator(root); }
+	Iterator end() { return Iterator(nullptr); }
 };

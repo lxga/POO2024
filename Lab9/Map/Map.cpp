@@ -7,7 +7,6 @@ int main() {
     m[10] = "C++";
     m[20] = "test";
     m[30] = "Poo";
-    /*
     for (auto [key, value, index] : m)
     {
         printf("Index:%d, Key=%d, Value=%s\n", index, key, value);
@@ -16,10 +15,6 @@ int main() {
     for (auto [key, value, index] : m)
     {
         printf("Index:%d, Key=%d, Value=%s\n", index, key, value);
-    }*/
-    for (auto &i : m) {
-        cout << i.index << ' ';
-        //i.index = 69;
     }
     return 0;
 }
