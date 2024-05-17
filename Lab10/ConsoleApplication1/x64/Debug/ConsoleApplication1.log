@@ -1,0 +1,59 @@
+﻿  Array.h
+  ConsoleApplication1.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,45): error C2676: binary '-': 'const _RanIt' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,45): error C2676:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,45): error C2676:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,45): error C2676:             _RanIt=ArrayIterator<int>
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,45): error C2676:         ]
+  (compiling source file 'ConsoleApplication1.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(4326,30):
+  could be 'unknown-type std::operator -(const std::move_iterator<_Iter> &,const std::move_iterator<_Iter2> &) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,38):
+  	'unknown-type std::operator -(const std::move_iterator<_Iter> &,const std::move_iterator<_Iter2> &) noexcept(<expr>)': could not deduce template argument for 'const std::move_iterator<_Iter> &' from 'const _RanIt'
+          with
+          [
+              _RanIt=ArrayIterator<int>
+          ]
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(1775,5):
+  or       'unknown-type std::operator -(const std::reverse_iterator<_BidIt> &,const std::reverse_iterator<_BidIt2> &) noexcept(<expr>)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,38):
+  	'unknown-type std::operator -(const std::reverse_iterator<_BidIt> &,const std::reverse_iterator<_BidIt2> &) noexcept(<expr>)': could not deduce template argument for 'const std::reverse_iterator<_BidIt> &' from 'const _RanIt'
+          with
+          [
+              _RanIt=ArrayIterator<int>
+          ]
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,45):
+  the template instantiation context (the oldest one first) is
+  	C:\Users\luca\source\repos\POO2024\Lab10\ConsoleApplication1\ConsoleApplication1.cpp(4,16):
+  	see reference to class template instantiation 'Array<int>' being compiled
+  	C:\Users\luca\source\repos\POO2024\Lab10\ConsoleApplication1\Array.h(139,10):
+  	while compiling class template member function 'void Array<int>::Sort(int (__cdecl *)(const T &,const T &))'
+          with
+          [
+              T=int
+          ]
+  		C:\Users\luca\source\repos\POO2024\Lab10\ConsoleApplication1\ConsoleApplication1.cpp(15,11):
+  		see the first reference to 'Array<int>::Sort' in 'main'
+  	C:\Users\luca\source\repos\POO2024\Lab10\ConsoleApplication1\Array.h(140,14):
+  	see reference to function template instantiation 'void std::sort<ArrayIterator<T>>(const _RanIt,const _RanIt)' being compiled
+          with
+          [
+              T=int,
+              _RanIt=ArrayIterator<int>
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8086,10):
+  	see reference to function template instantiation 'void std::sort<_RanIt,std::less<void>>(const _RanIt,const _RanIt,_Pr)' being compiled
+          with
+          [
+              _RanIt=ArrayIterator<int>,
+              _Pr=std::less<void>
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,5): error C2672: '_Sort_unchecked': no matching overloaded function found
+  (compiling source file 'ConsoleApplication1.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8047,19):
+  could be 'void std::_Sort_unchecked(_RanIt,_RanIt,iterator_traits<_Iter>::difference_type,_Pr)'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\algorithm(8081,5):
+  	'void std::_Sort_unchecked(_RanIt,_RanIt,iterator_traits<_Iter>::difference_type,_Pr)': expects 4 arguments - 3 provided
+  
+  Generating Code...
