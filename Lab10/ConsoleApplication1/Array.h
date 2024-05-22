@@ -24,31 +24,28 @@ public:
 template<class T>
 class ArrayIterator {
 private:
-    T* Current;
+    T** list;
+    int current;
 public:
-    ArrayIterator() : Current(nullptr) {}
-    ArrayIterator(T* ptr) : Current(ptr) {}
-
+    ArrayIterator(T** list,int current) : list(list), current(current) {}
+    
     ArrayIterator& operator ++ () {
-        Current++;
+        current++;
         return *this;
     }
     ArrayIterator& operator -- () {
-        Current--;
+        current--;
         return *this;
     }
     void operator= (const ArrayIterator<T>& a) {
-        Current = a.Current;
+        *this = a;
         //return *this;
     }
     bool operator!=(const ArrayIterator<T>& a) {
         return Current != a.Current;
     }
-    T& GetElement() {
-        return *Current;
-    }
     T& operator*() {
-        return *Current;
+        return list[current];
     }
 };
 
@@ -70,12 +67,12 @@ public:
 
     Array(int capacity) : capacity(capacity), size(0) {
         list = new T * [capacity];
-        for (int i = 0; i < capacity; i++)
-            list[i] = new T;
     }
     Array(const Array<T>& otherArray) {
         list = new T * [otherArray.capacity];
-        for (int i = 0; i < capacity; i++) {
+        capacity = otherArray.capacity;
+        size = otherArray.size;
+        for (int i = 0; i < size; i++) {
             list[i] = otherArray.list[i];
         }
     }
@@ -134,13 +131,13 @@ public:
     }
 
     void Sort() {
-        std::sort(this->GetBeginIterator(), this->GetEndIterator());
+        std::sort(this->begin(), this->end(), [](const T& a, const T& b) -> bool { return a<b });
     }// sorteaza folosind comparatia intre elementele din T
     void Sort(int(*compare)(const T&, const T&)) {
-        std::sort(this->GetBeginIterator(), this->GetEndIterator());
+        std::sort(this->begin(), this->end(),compare);
     }// sorteaza folosind o functie de comparatie
     void Sort(Compare* comparator) {
-        std::sort(this->GetBeginIterator(), this->GetEndIterator());
+        std::sort(this->begin(), this->end(), comparator);
     }
 
     // functii de cautare - returneaza pozitia elementului sau -1 daca nu exista
@@ -174,12 +171,13 @@ public:
             return l;
         else
             return -1;
-    }
-
+    } 
     int Find(const T& elem) {
-        return std::find(GetBeginIterator(), GetEndIterator(), elem);
+        return std::find(begin(), end(), elem);
     }
-    int Find(const T& elem, int(*compare)(const T&, const T&));//  cauta un element folosind o functie de comparatie
+    int Find(const T& elem, int(*compare)(const T&, const T&)) {
+        //return std::find(begin(), end(), elem, compare);
+    }
     int Find(const T& elem, Compare* comparator);//  cauta un element folosind un comparator
 
     int GetSize() {
@@ -189,17 +187,10 @@ public:
         return capacity;
     }
 
-    ArrayIterator<T> GetBeginIterator() {
-        return ArrayIterator<T>(list[0]);
-    }
-    ArrayIterator<T> GetEndIterator() {
-        return ArrayIterator<T>(nullptr);
-    }
-
     ArrayIterator<T> begin() {
-        return ArrayIterator<T>(list[0]);
+        return ArrayIterator<T>(list,0);
     }
     ArrayIterator<T> end() {
-        return ArrayIterator<T>(nullptr);
+        return ArrayIterator<T>(list, size);
     }
 };
